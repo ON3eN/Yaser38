@@ -19,7 +19,7 @@
     }
 
     header {
-      background-color: #ffffff;
+      background-color: #f1f5f9; /* رصاصي فاتح */
       color: #1e293b;
       height: 70px;
       padding: 0 1rem;
@@ -32,6 +32,7 @@
       left: 0;
       z-index: 999;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: top 0.3s ease;
     }
 
     .logo {
@@ -39,7 +40,7 @@
       font-size: 1rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.8rem;
       color: #1e293b;
     }
 
@@ -47,20 +48,39 @@
       height: 24px;
     }
 
-    nav {
-      display: flex;
-      gap: 1rem;
-    }
-
-    nav a {
-      color: #1e293b;
+    .logo a {
       text-decoration: none;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
       font-weight: 600;
-      font-size: 0.95rem;
+      transition: background-color 0.3s;
     }
 
-    nav a:hover {
-      color: #14532d;
+    .logo a:hover {
+      background-color: #e2e8f0;
+    }
+
+    .auth-links {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .auth-links a {
+      text-decoration: none;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+      padding: 0.35rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .auth-links a:hover {
+      background-color: #e2e8f0;
     }
 
     .menu-toggle {
@@ -176,12 +196,10 @@
     }
 
     @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
       .menu-toggle {
         display: block;
       }
+
       .mobile-menu.show {
         display: flex;
       }
@@ -197,28 +215,30 @@
       .job-card h3 {
         font-size: 1.2rem;
       }
+
+      .auth-links {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <header id="mainHeader">
     <div class="logo">
       <img src="frsa.png" alt="شعار">
       منصة فرص
+      <a href="index.html">الرئيسية</a>
     </div>
+
+    <div class="auth-links">
+      <a href="login.html">تسجيل الدخول</a>
+      <a href="signup.html">إنشاء حساب</a>
+    </div>
+
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <nav>
-      <a href="index.html">🏠 الرئيسية</a>
-      <a href="jobs.html">💼 الوظائف</a>
-      <a href="about.html">📄 من نحن</a>
-      <a href="contact.html">📞 تواصل معنا</a>
-    </nav>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">🏠 الرئيسية</a>
-      <a href="jobs.html">💼 الوظائف</a>
-      <a href="about.html">📄 من نحن</a>
-      <a href="contact.html">📞 تواصل معنا</a>
+      <a href="index.html">الرئيسية</a>
     </div>
   </header>
 
@@ -241,11 +261,36 @@
     </div>
   </section>
 
+  <!-- ✅ الفوتر يتم استدعاؤه من ملف خارجي -->
+  <div id="footer-placeholder"></div>
+
   <script>
     function toggleMenu() {
       const menu = document.getElementById("mobileMenu");
       menu.classList.toggle("show");
     }
+
+    let lastScrollTop = 0;
+    const header = document.getElementById("mainHeader");
+
+    window.addEventListener("scroll", function () {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop && currentScroll > 70) {
+        header.style.top = "-80px";
+      } else {
+        header.style.top = "0";
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+    // ✅ استدعاء الفوتر من ملف خارجي
+    window.addEventListener("DOMContentLoaded", () => {
+      fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+    });
   </script>
 
 </body>

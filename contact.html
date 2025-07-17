@@ -6,9 +6,7 @@
   <title>تواصل معنا - منصة فرص</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -20,8 +18,8 @@
     }
 
     header {
-      background-color: #0f172a;
-      color: white;
+      background-color: #f1f5f9;
+      color: #1e293b;
       height: 70px;
       padding: 0 1rem;
       display: flex;
@@ -40,54 +38,47 @@
       font-size: 1rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.8rem;
+      color: #1e293b;
     }
 
     .logo img {
       height: 24px;
     }
 
-    nav {
-      display: flex;
-      gap: 1rem;
-    }
-
-    nav a {
-      color: #cbd5e1;
+    .logo a {
       text-decoration: none;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
       font-weight: 600;
-      font-size: 0.95rem;
+      transition: background-color 0.3s;
     }
 
-    nav a:hover {
-      color: #72ef85;
+    .logo a:hover {
+      background-color: #e2e8f0;
     }
 
-    .menu-toggle {
-      display: none;
-      font-size: 1.6rem;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
+    .auth-links {
+      display: flex;
+      gap: 0.5rem;
     }
 
-    .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background-color: #0f172a;
-      position: absolute;
-      top: 70px;
-      right: 0;
-      width: 100%;
-      z-index: 999;
-    }
-
-    .mobile-menu a {
-      color: white;
-      padding: 1rem;
-      border-bottom: 1px solid #1e293b;
+    .auth-links a {
       text-decoration: none;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .auth-links a:hover {
+      background-color: #e2e8f0;
     }
 
     .contact-section {
@@ -135,9 +126,7 @@
       color: #64748b;
     }
 
-    textarea {
-      resize: vertical;
-    }
+    textarea { resize: vertical; }
 
     button {
       padding: 0.8rem;
@@ -193,17 +182,13 @@
       height: 20px;
     }
 
+    #footer-placeholder {
+      margin-top: auto;
+    }
+
     @media (max-width: 768px) {
-      nav {
+      .auth-links {
         display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .mobile-menu.show {
-        display: flex;
       }
 
       .contact-section {
@@ -220,31 +205,21 @@
 </head>
 <body>
 
-  <!-- الشريط العلوي -->
+  <!-- ✅ الهيدر -->
   <header>
     <div class="logo">
       <img src="frsa.png" alt="شعار">
       منصة فرص
+      <a href="index.html">الرئيسية</a>
     </div>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <nav>
-      <a href="index.html">🏠 الرئيسية</a>
-      <a href="jobs.html">💼 الوظائف</a>
-      <a href="about.html">📄 من نحن</a>
-      <a href="contact.html">📞 تواصل معنا</a>
-    </nav>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">🏠 الرئيسية</a>
-      <a href="jobs.html">💼 الوظائف</a>
-      <a href="about.html">📄 من نحن</a>
-      <a href="contact.html">📞 تواصل معنا</a>
+    <div class="auth-links">
+      <a href="login.html">تسجيل الدخول</a>
+      <a href="signup.html">إنشاء حساب</a>
     </div>
   </header>
 
-  <!-- الصفحة الرئيسية -->
+  <!-- ✅ المحتوى -->
   <section class="contact-section">
-
-    <!-- شبكات التواصل -->
     <div class="social-box">
       <h2>تابعنا على</h2>
       <a href="https://x.com" target="_blank"><img src="x-icon.png" alt="X">منصة X</a>
@@ -253,7 +228,6 @@
       <a href="mailto:foras@example.com"><img src="gmail-icon.png" alt="Gmail">البريد الإلكتروني</a>
     </div>
 
-    <!-- نموذج التواصل -->
     <div class="contact-form">
       <h1>تواصل معنا</h1>
       <form>
@@ -263,14 +237,25 @@
         <button type="submit">إرسال</button>
       </form>
     </div>
-
   </section>
+
+  <!-- ✅ الفوتر -->
+  <div id="footer-placeholder"></div>
 
   <script>
     function toggleMenu() {
       const menu = document.getElementById("mobileMenu");
       menu.classList.toggle("show");
     }
+
+    // تحميل الفوتر من ملف خارجي
+    window.addEventListener("DOMContentLoaded", () => {
+      fetch("footer.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+    });
   </script>
 
 </body>

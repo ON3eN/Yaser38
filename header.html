@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>منصة فرص</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
     * {
@@ -15,8 +16,8 @@
     }
 
     header {
-      background-color: #ffffff; /* أبيض */
-      color: #1e293b; /* رمادي غامق */
+      background-color: #ffffff;
+      color: #1e293b;
       padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
@@ -28,6 +29,7 @@
       z-index: 1000;
       height: 70px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      transition: top 0.3s ease;
     }
 
     .logo {
@@ -50,7 +52,7 @@
     }
 
     nav a {
-      color: #1e293b; /* رمادي غامق */
+      color: #1e293b;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
@@ -58,7 +60,7 @@
     }
 
     nav a:hover {
-      color: #14532d; /* أخضر داكن عند التحويم */
+      color: #14532d;
     }
 
     .menu-toggle {
@@ -96,10 +98,21 @@
         display: block;
       }
     }
+
+    main {
+      padding-top: 80px; /* تعويض الهيدر الثابت */
+    }
+
+    section {
+      padding: 2rem;
+      background-color: #f1f5f9;
+      min-height: 1500px;
+    }
   </style>
 </head>
 <body>
-  <header>
+
+  <header id="mainHeader">
     <div class="logo">
       <img src="frsa.png" alt="شعار فرص" />
       منصة فرص
@@ -113,10 +126,36 @@
     </nav>
   </header>
 
+  <main>
+    <section>
+      <h1>مرحبًا بك في منصة فرص</h1>
+      <p>هذا مجرد محتوى تجريبي لتجربة سلوك الهيدر أثناء التمرير.</p>
+      <p>مرر للأسفل لترى الهيدر يختفي، وارجع للأعلى ليظهر مرة أخرى.</p>
+    </section>
+  </main>
+
   <script>
     function toggleMenu() {
       document.getElementById('main-nav').classList.toggle('show');
     }
+
+    let lastScrollTop = 0;
+    const header = document.getElementById("mainHeader");
+
+    window.addEventListener("scroll", function () {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentScroll > lastScrollTop) {
+        // المستخدم نازل
+        header.style.top = "-80px";
+      } else {
+        // المستخدم طالع
+        header.style.top = "0";
+      }
+
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
   </script>
+
 </body>
 </html>
