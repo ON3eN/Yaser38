@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>من نحن - منصة فرص</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #1c3c34; /* أخضر غامق */
+      color: #e2e8f0;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #ffffff;
+      color: white;
+      height: 60px;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo img {
+      height: 24px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #22c55e;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #0f172a;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+    }
+
+    .mobile-menu a {
+      color: white;
+      padding: 1rem;
+      border-bottom: 1px solid #1e293b;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      margin-top: 3rem;
+      padding: 2rem;
+      background-color: #2a5248;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(100%);
+      animation: slideUp 1.2s ease-out forwards;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 2.1;
+      color: #e2e8f0;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .mobile-menu.show {
+        display: flex;
+      }
+
+      main {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="frsa.png" alt="شعار">
+      منصة فرص
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav>
+      <a href="index.html">🏠 الرئيسية</a>
+      <a href="jobs.html">💼 الوظائف</a>
+      <a href="about.html">📄 من نحن</a>
+      <a href="contact.html">📞 تواصل معنا</a>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">🏠 الرئيسية</a>
+      <a href="jobs.html">💼 الوظائف</a>
+      <a href="about.html">📄 من نحن</a>
+      <a href="contact.html">📞 تواصل معنا</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>من نحن</h1>
+    <p>
+      منصة <strong>فرص</strong> وُجدت لتمكين أبناء وبنات الوطن، ودعم مسيرتهم المهنية من خلال توفير فرص عمل حقيقية وملائمة.<br>
+      نؤمن أن الإنسان السعودي هو أساس بناء الاقتصاد، وأن فتح الأبواب أمامه يسهم بشكل مباشر في تنمية الاقتصاد الوطني وازدهاره.<br>
+      نسعى لتقليل نسب البطالة ورفع مستوى الكفاءة والإنتاجية عبر منصتنا الرقمية التي تجمع بين الشركات والباحثين عن العمل بكل شفافية وسهولة.
+    </p>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("show");
+    }
+  </script>
+</body>
+</html>
